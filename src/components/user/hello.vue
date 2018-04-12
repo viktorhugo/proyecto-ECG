@@ -1,6 +1,6 @@
 <template>
-  <div id="hello" class=""  >
-      <div class=" ">
+  <div id="hello" class="" >
+       <div class=" ">
 
       <b-navbar toggleable="" class="" type="dark" variant="dark" >
 
@@ -14,7 +14,7 @@
           <b-navbar-nav class="ml-auto" >
             <b-nav-item  active-class="activo" >
               <i class="fa fa-bar-chart text-warning" aria-hidden="true"></i>
-              <router-link to="/hello/proceso2" class="h5 text-info">
+              <router-link to="/hello/D_señal" class="h5 text-info">
               Datos
               </router-link>
 
@@ -22,12 +22,12 @@
 
             <b-nav-item active-class="activo" >
               <i class="fa fa-map text-warning " aria-hidden="true"></i>
-              <router-link to="/hello/proceso" class="h5 text-info">Analisar Señal</router-link>
+              <router-link to="/hello/P_Señal" class="h5 text-info">Analisar Señal</router-link>
             </b-nav-item>
 
             <b-nav-item active-class="activo">
               <i class="fa fa-line-chart text-warning " aria-hidden="true"></i>
-              <router-link to="/hello/señal" exact class="h5 text-info">Tiempo Real</router-link>
+              <router-link to="/hello/S_Realtime" exact class="h5 text-info">Tiempo Real</router-link>
             </b-nav-item>
           </b-navbar-nav>
 
@@ -81,7 +81,7 @@ export default {
     this.photo = this.user.photoURL;
     this.userId = this.user.userId
     swal("Bienvenido "+ this.nombre, "Visualizacion de señales", "success");
-    this.$router.push('/hello/proceso2')
+    this.$router.push('/hello/D_señal')
     }
   },
 //-------------------------------------------------------------------------
@@ -89,7 +89,6 @@ export default {
 
    ChangeState() {
       this.$store.state.estado = !this.$store.state.estado
-      console.log(this.$store.state.estado);
     },
     //-------------------------------------------------------------
     cerrarsesion() {

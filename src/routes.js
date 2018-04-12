@@ -1,15 +1,15 @@
 
+// ARCHIVO MANEJADOR DE RUTAS ENTRE LAS VISTAS
 import login from './components/login.vue'
 import info from './components/info.vue'
 import crearcuenta from './components/crearcuenta.vue'
 import hello from './components/user/hello.vue'
-import notFound from './components/notFound.vue' ;
-import señal from './components/user/señal.vue';
-import proceso from './components/user/proceso.vue';
-import proceso2 from "./components/user/proceso2.vue";
+import D_señal from './components/user/D_señal.vue';
+import P_señal from './components/user/P_señal.vue';
+import S_Realtime from "./components/user/S_Realtime.vue";
 
 export const routes = [
-
+// OBJETO MANEJADOR DE RUTAS
 	{
 		path:'/login',
 		component: login,
@@ -27,9 +27,9 @@ export const routes = [
 		path:'/hello',
 		component: hello,
 		children: [
-			{path:'señal',  component: señal},
-			{path:'proceso', component: proceso},
-			{path:'proceso2', component: proceso2}
+			{path:'D_señal',  component: D_señal },
+			{path:'P_señal', component: P_señal},
+			{path:'S_Realtime', component: S_Realtime}
 
 		],
 		meta:{

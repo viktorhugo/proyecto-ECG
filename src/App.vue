@@ -8,10 +8,11 @@
     
         <div id="app" class="container-fluid slider d-flex justify-content-center" v-if="this.$store.state.tipo">
             <div class="">
-              <b-jumbotron class="jumbo text-white" header="Sistema Visualizacion Señales ECG" lead="Universidad de los Llanos Vue.js 2" >
-              <p>For more information visit website</p>
+              <b-jumbotron class="jumbo text-white" header="Sistema De Visualización Señales Electrocardiográficas ECG" lead="Universidad de los Llanos " >
               <b-btn variant="success" @click="cambiartipo()">Ingresar</b-btn>
-              <b-btn variant="success" @click="info()">Mas Info</b-btn>
+              <b-btn variant="success" >
+                <a class="alert-link" href="https://github.com/viktorhugo/proyecto-ecg">Informacion</a>
+                </b-btn>
               </b-jumbotron>
             </div>    
         </div>
@@ -24,7 +25,7 @@
   
  </div>
 </template>
-
+//--------------------------------------------------------------------------------------------------------------
 <script>
 
 export default {
@@ -34,22 +35,27 @@ export default {
 
    }
  },
+//---------------------------------------------
  created() {
-   console.log(this.$store.state.tipo);
+   
  },
+//---------------------------------------------
  methods: {
-   cambiartipo() {
+   
+   cambiartipo() { // CAMBIAR ESTADO GLOBAL DE VARIABLE
      this.$store.state.tipo = !this.$store.state.tipo
     this.$router.replace('/login')
    },
+
    info() {
-    this.tipo = !this.tipo
-    this.$router.replace('/info')
+    //this.$store.state.tipo = !this.$store.state.tipo
+    //this.('https://github.com/viktorhugo/proyecto-ecg')
    }
  }
+ //---------------------------------------------
 }
 </script>
-
+//--------------------------------------------------------------------------------------------------------------
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Chelsea+Market|Finger+Paint|Happy+Monkey|Londrina+Sketch|Love+Ya+Like+A+Sister|The+Girl+Next+Door');
  #app {

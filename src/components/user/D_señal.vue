@@ -1,5 +1,5 @@
 <template>
-  <div id="proceso2 ">
+  <div id="proceso2 ">m
       <div class="container justify-content-center mt-5">
         <div class="mt-5 ">
     			<span id="titulo" class="cnt d-flex justify-content-center">
@@ -9,6 +9,7 @@
     				<p class="text-dark">o</p>
     				<p class="text-info">s</p>
     				<i class="fa fa-heartbeat text-danger" aria-hidden="true"></i>
+            <p class="text-dark"></p>
     				<p class="text-warning">E</p>
     				<p class="text-success">C</p>
     				<p class="text-info">G</p>
@@ -20,8 +21,8 @@
         <span class="cnt d-flex ml-3">
           <p class=" h1 text-danger">P</p>
           <p class=" h1 text-dark">acientes</p>
-          <p class=" h1 text-danger">R</p>
-          <p class=" h1 text-dark">egistrados</p>
+          <p class=" h1 text-danger">A</p>
+          <p class=" h1 text-dark">tendidos</p>
           </span>
           <b-alert show variant="dark">
           <h4 class="alert-heading "> Sabias que ?</h4>
@@ -33,7 +34,7 @@
       </div>
 
     <div class=" mr-5 ml-5 mt-1 d-flex ">
-        <b-btn  class="ml-5"v-b-modal.modal-center variant="primary">Consultar pacientes</b-btn>
+        <b-btn  class="ml-5 butt"v-b-modal.modal-center variant="primary">Consultar pacientes</b-btn>
         <b-button  class=" ml-5"variant="success" @click="ActDatos()">Actualizar los Datos</b-button>
         <b-modal id="modal-center"
               variant="primary"
@@ -45,11 +46,11 @@
               body-text-variant="dark"
               footer-bg-variant="warning"
               footer-text-variant="dark">
-            <p class="my-4 h5" v-for="paciente in dataseñales" :key="paciente.id">
-              <strong class="text-danger">{{paciente.id}} -</strong>
-              <ins class="h4">{{ paciente.first_name }} {{ paciente.last_name }}</ins>
-              <strong class="text-danger ">: </strong> {{paciente.fecha}}
-          </p>
+            <p class=" h5" v-for="paciente in dataseñales" :key="paciente.id">
+              <b-btn v-b-popover.hover="paciente.p_caract" :title="paciente.fecha" variant="success">
+                {{ paciente.first_name }} {{ paciente.last_name }}
+              </b-btn>
+            </p>
         </b-modal>
       </div>
   </div>
@@ -105,6 +106,10 @@ export default {
 #titulo{
   font-size: 60px;
   text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;
+}
+
+.butt {
+  cursor: pointer;
 }
 .boo {
   font-family: 'Chelsea Market', cursive;

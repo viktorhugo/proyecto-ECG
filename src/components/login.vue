@@ -1,20 +1,24 @@
 <template>
   <div id="cuerpo" class="">
- 
     <form @sumbit.prevent="iniciarsesion">
         <div class="my-content ">
                   <span id="titulo" class="d-flex justify-content-center">
-                    
-                    <p class="text-dark">S</p>
+                    <p class="text-dark">I</p>
+                    <p class="text-danger">n</p>
+                    <p class="text-info">i</p>
+                    <p class="text-success">c</p>
                     <p class="text-warning">i</p>
-                    <p class="text-info">g</p>
-                    <p class="text-success">n</p>
-                    <p class="text-warning">I</p>
-                    <p class="text-white">n</p>
+                    <p class="text-white">a</p>
+                    <p class="text-success">r</p>
+                    <p class="text-danger">S</p>
+                    <p class="text-dark">e</p>
+                    <p class="text-info">s</p>
+                    <p class="text-success">i</p>
+                    <p class="text-white">ó</p>
+                    <p class="text-dark">n</p>
+                  
                    </span>
-                  <img src="/src/assets/_Pokemon Trainer Boy.png" height="200" width="200" alt="">
-
-
+                  <img src="https://image.flaticon.com/icons/svg/265/265760.svg" height="200" width="200" alt="">
               <b-button  variant="danger" @click="signingoogle()" v-b-popover.hover.auto="'Inicie con Google'" >
                 <i class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
                 Google
@@ -27,12 +31,12 @@
 
             <div class="input-group margin-bottom-sm">
               <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw fa-2x"></i></span>
-              <input class="form-control" v-model="email" required type="email" placeholder="Email address">
+              <input class="form-control" v-model="email" required type="email" placeholder="Email">
             </div><br>
 
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-key fa-fw fa-2x"></i></span>
-              <input class="form-control" v-model="password" required type="password"  placeholder="Password">
+              <input class="form-control" v-model="password" required type="password"  placeholder="Contraseña">
             </div><br><br>
             <div class="text-center  align-bottom">
                 <b-button  @click="iniciarsesion()" variant="success">
@@ -46,17 +50,14 @@
                 </b-button><br>
             </div>
                <br> <p class="text-warning">No tienes una cuenta ? <router-link to="/crearcuenta"> Crea una</router-link></p><br>
-
-
       </div>
     </form>
-
   </div>
-
 </template>
-
+//--------------------------------------------------------------------------------------------------------------
 <script>
 import firebase from 'firebase';
+import swal from 'sweetalert'
 export default {
   data(){
     return{
@@ -65,21 +66,26 @@ export default {
       password: ''
     }
   },
-	methods: {
 
+	methods: {
+    //-----------------------------------------------------------
+    // FUNCION PARA INICIAR SESION
 	  iniciarsesion() {
 	    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((value) => {
-        alert('Usted se encuetra con una cuenta activa')
-        this.$router.replace('/hello/proceso2')
+        swal('Usted se encuetra con una cuenta activa')
+        this.$router.replace('/hello')
       }, (err) => {
         swal ( "Oops" ,  "! " + err.message +" ¡" ,  "error" )
       })
-	  },
+    },
+    //-----------------------------------------------------------
+    // FUNCION PARA CAMBIAR ESTADO Y VOLVER
     volver () {
       this.$store.state.tipo = !this.$store.state.tipo
-      console.log(this.$store.state.tipo);
      this.$router.replace('/')
    },
+   //-----------------------------------------------------------
+   // FUNCION PARA INICIAR SESION CON GOOGLE
    signingoogle () {
      if (!firebase.auth().currentUser ) {
        var provider = new firebase.auth.GoogleAuthProvider();
@@ -93,14 +99,16 @@ export default {
          var erroremail = err.email
          var credential = err.credential
          if (errorcode === 'auth/account-exists-with-different-credential') {
-           alert('El usuario es el mismo')
+           swal('El usuario es el mismo')
          }else {
-           alert('Ooops ' + err.message)
+           swal('Ooops ' + err.message)
          }
 
        })
      }
    },
+   //-----------------------------------------------------------
+   // FUNCION PARA INICIAR SESION CON FACEBOOK
    signinfacebook () {
      if (!firebase.auth().currentUser ) {
        var provider = new firebase.auth.FacebookAuthProvider();
@@ -114,18 +122,20 @@ export default {
          var erroremail = err.email
          var credential = err.credential
          if (errorcode === 'auth/account-exists-with-different-credential') {
-           alert('El usuario es el mismo')
+           swal('El usuario es el mismo')
          }else {
-           alert('Ooops ' + err.message)
+           swal('Ooops ' + err.message)
          }
 
        })
      }
    },
+   //-----------------------------------------------------------
 	}
 }
 </script>
-<style scoped>
+//--------------------------------------------------------------------------------------------------------------
+<style scoped> 
 @import url('https://fonts.googleapis.com/css?family=Chelsea+Market|Finger+Paint|Happy+Monkey|Londrina+Sketch|Love+Ya+Like+A+Sister|The+Girl+Next+Door');
 
 #cuerpo {

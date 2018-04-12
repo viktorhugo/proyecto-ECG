@@ -1,3 +1,6 @@
+//ARCHIVO RENDERIZADO DE LA APLICACION
+
+// IMPORTACION DE COMPLEMTOS Y HERRAMIENTAS
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App.vue'
@@ -18,11 +21,12 @@ Vue.use(BootstrapVue);
 Vue.use(VueRouter)
 
 
-const router = new VueRouter({
+const router = new VueRouter({ // OBJETO MANEJADOR DE RUTAS
   mode:'history',
   routes
 })
 
+//GUARDS DE VUE-ROUTER
 router.beforeEach((to, from, next) => {
   let currentUser = firebase.auth().currentUser;
   let requiresAuth = to.matched.some( record => record.meta.requiresAuth);
@@ -32,21 +36,23 @@ router.beforeEach((to, from, next) => {
   else next()
 });
 
+//RENDERIZADO DE LA APLICACION
 new Vue({
     el: '#app',
     router,
     Simplert,
     created() {
-    firebase.initializeApp(config);
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user) {
-        swal("Oopss", "Hay Un usuario Activo", "info");
-        this.$router.push('/hello')
-      } else {
-        this.$router.push('/login')
-      }
-     });
+      firebase.initializeApp(config); // iniciacion firebase
+      firebase.auth().onAuthStateChanged((user) => { // Gestion de Estado Auth
+        if(user) {
+          swal("Oopss", "Hay Un usuario Activo", "info");
+          this.$router.push('/hello/D_señal')
+        } else {
+          this.$router.push('/login')
+        }
+      });
     },
+
     store,
     render: h => h(App)
 })
