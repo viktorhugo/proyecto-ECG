@@ -22,10 +22,10 @@
       <div class=" d-flex">
 
             <div class="" variant="success">
-              <b-btn  class="ml-2 mb-3 butt "v-b-modal.modal-center variant="success">Pacientes en el Sistema</b-btn>
+              <b-btn  class="ml-2 mb-3 butt "v-b-modal.modal-center variant="success">Visualizar señal Paciente</b-btn>
               <b-modal id="modal-center"
                 variant="primary"
-                centered title="Total de Pacientes En el Sistema"
+                centered title="Seleccione el paciente"
                 class="text-"
                 header-bg-variant="dark"
                 header-text-variant="light"
@@ -34,8 +34,8 @@
                 footer-bg-variant="warning"
                 footer-text-variant="dark">
                 <b-button-group size="sm" v-for="paciente in dataseñales" :key="paciente.id" class="m-1">
-                  <b-btn class="butt" v-b-popover.hover="paciente.p_caract" :title="paciente.fecha" variant="info" @click="traer( paciente.signal, paciente.first_name, paciente.last_name, paciente.fecha, paciente.p_caract, paciente.id)">
-                    {{ paciente.first_name }} {{ paciente.last_name }}, {{paciente.fecha}}
+                  <b-btn class="butt" v-b-popover.hover="paciente.p_caract" :title="'Fecha de registro: '+paciente.fecha" variant="info" @click="traer( paciente.signal, paciente.first_name, paciente.last_name, paciente.fecha, paciente.p_caract, paciente.id)">
+                    {{ paciente.first_name }} {{ paciente.last_name }}
                   </b-btn>
                 </b-button-group>
               </b-modal>

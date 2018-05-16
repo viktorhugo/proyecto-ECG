@@ -1,5 +1,5 @@
 <template>
-<div class="  fluid container " >
+<div class="  fluid container " > 
 	<div class="container">
 
 		<div class="mt-5 ">

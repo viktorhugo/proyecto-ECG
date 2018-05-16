@@ -1,5 +1,5 @@
 <template>
-  <div id="proceso2 ">m
+  <div id="proceso2 ">
       <div class="container justify-content-center mt-5">
         <div class="mt-5 ">
     			<span id="titulo" class="cnt d-flex justify-content-center">
@@ -47,11 +47,12 @@
               footer-bg-variant="warning"
               footer-text-variant="dark">
             <p class=" h5" v-for="paciente in dataseñales" :key="paciente.id">
-              <b-btn v-b-popover.hover="paciente.p_caract" :title="paciente.fecha" variant="success">
+              <b-btn v-b-popover.hover="" :title="'Fecha de registro: '+paciente.fecha" variant="success">
                 {{ paciente.first_name }} {{ paciente.last_name }}
               </b-btn>
             </p>
         </b-modal>
+
       </div>
   </div>
 </template>
