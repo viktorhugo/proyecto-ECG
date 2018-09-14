@@ -6,7 +6,7 @@
 
       <b-navbar-brand class="">
       <img src="https://image.flaticon.com/icons/svg/119/119067.svg"  height="50" width="50" class="text-info">
-         <strong class="text-info"> Sistema de Visualizacion</strong>
+         <strong class="text-info"> Visualización Señales ECG</strong>
        </b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse" class="text-center">
@@ -80,7 +80,7 @@ export default {
     this.email = this.user.email;
     this.photo = this.user.photoURL;
     this.userId = this.user.userId
-    swal("Bienvenido "+ this.nombre, "Visualizacion de señales", "success");
+    swal("Bienvenido "+ this.$store.state.nombre, "Visualizacion de señales", "success");
     this.$router.push('/hello/D_señal')
     }
   },
@@ -123,11 +123,12 @@ export default {
 
 #hello {
   font-family: 'Chelsea Market', cursive;
+  background-color: rgb(138, 82, 104);
   background-image: url("https://images.pexels.com/photos/197919/pexels-photo-197919.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb");
   background-size: cover;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height:230vh;
   ;
 }
 .router-link-active{

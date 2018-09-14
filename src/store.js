@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
 		tipo: true,
 		nombre:'',
 		email:'',
-		password:''
+		password:'',
+		view:'100vh',
 	}
 })

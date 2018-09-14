@@ -21,7 +21,7 @@
         <span class="cnt d-flex ml-3">
           <p class=" h1 text-danger">P</p>
           <p class=" h1 text-dark">acientes</p>
-          <p class=" h1 text-danger">A</p>
+          <p class=" h1 text-danger"> A</p>
           <p class=" h1 text-dark">tendidos</p>
           </span>
           <b-alert show variant="dark">
@@ -34,8 +34,8 @@
       </div>
 
     <div class=" mr-5 ml-5 mt-1 d-flex ">
-        <b-btn  class="ml-5 butt"v-b-modal.modal-center variant="primary">Consultar pacientes</b-btn>
-        <b-button  class=" ml-5"variant="success" @click="ActDatos()">Actualizar los Datos</b-button>
+        <b-btn  class="ml-5 butt" v-b-modal.modal-center variant="primary">Consultar pacientes</b-btn>
+        <b-button  class=" ml-5" variant="success" @click="ActDatos()">Actualizar los Datos</b-button>
         <b-modal id="modal-center"
               variant="primary"
               centered title="Total de Pacientes En el Sistema"
@@ -47,8 +47,9 @@
               footer-bg-variant="warning"
               footer-text-variant="dark">
             <p class=" h5" v-for="paciente in dataseñales" :key="paciente.id">
-              <b-btn v-b-popover.hover="" :title="'Fecha de registro: '+paciente.fecha" variant="success">
-                {{ paciente.first_name }} {{ paciente.last_name }}
+              <b-btn v-b-popover.hover=" 'Id:'+paciente.id+'\n'+'Edad: '+paciente.Edad +'\n\n'+' Su diagnostico es: '+paciente.Informacion_Diagnostico+'\n'+'Frecuencia Cardiaca: '+paciente.Info_tecnica.FC+'\n'+'P: '+paciente.Info_tecnica.P+'\n'+'PR: '+paciente.Info_tecnica.PR+'\n'+'QRS: '+paciente.Info_tecnica.QRS+'\n'+'QT QTc: '+paciente.Info_tecnica.QT_QTC +'\n'+'P QRS T: '+paciente.Info_tecnica.P_QRS_T"
+               :title="'Fecha de registro: '+ paciente.Fecha" variant="success">
+                {{ paciente.Nombre }}
               </b-btn>
             </p>
         </b-modal>
@@ -84,7 +85,7 @@ export default {
   methods: {
     //----------------------------------------------------------
     cargarseñal(){
-      axios.get('http://localhost:3000/pacientes')
+      axios.get('http://localhost:3000/muestras')
       .then((res) => {
         this.dataseñales = res.data
       })

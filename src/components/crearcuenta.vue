@@ -1,7 +1,7 @@
 <template>
-  <div id="crearcuenta" > 
+  <div id="crearcuenta" >
     <form @sumbit.prevent="crearcuenta" class="mt-5 mb-5 ponte">
-      <div class="container mb-4 ">
+      <div class="container mb-4">
       <span id="titulo" class="cnt d-flex justify-content-center">
         <p class="text-success">C</p>
         <p class="text-warning">r</p>
@@ -18,8 +18,8 @@
       <img class="ml-5 " src="/src/assets/__Heartrate.png" height="260" width="260"  alt="">
 
       <div class="input-group margin-bottom-sm mt-5">
-        <span class="input-group-addon"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></i></span>
-        <input class="form-control" v-model="nombre" required type="text" placeholder=" Nombre "> 
+        <span class="input-group-addon"> <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></span>
+        <input class="form-control" v-model="nombre" required type="text" placeholder=" Nombre ">
       </div>
 
       <div class="input-group margin-bottom-sm mt-3">
@@ -29,12 +29,12 @@
 
       <div class="input-group mt-3 ">
         <span class="input-group-addon"><i class="fa fa-key fa-fw fa-2x"></i></span>
-        <input class="form-control" v-model="password" required type="password"  placeholder=" Correo" required >
+        <input class="form-control" v-model="password" required type="password"  placeholder=" Contraseña"  >
       </div>
 
       <div class="text-center mt-5 mb-5 dfl">
           <div class="g-recaptcha" data-sitekey="6LdMxTgUAAAAAOSi-S-fVFi6vrj5jY3Zp12Bh7u_"></div>
-          <b-button class="ml-5"@click="crearcuenta()" variant="success">
+          <b-button class="ml-5" @click="crearcuenta()" variant="success">
             <i class="fa fa-check fa-1x" aria-hidden="true"></i>
             Crear cuenta
           </b-button>
@@ -67,11 +67,13 @@ export default {
     // FUNCION PARA CREAR CUENTA EN FIREBASE
     crearcuenta() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((value) => {
-        swal("Bienvenido " ,"! Su cuenta ha sido creada Exitosa mente ¡", "success")
+        this.$store.state.nombre=this.nombre
+        swal("Bienvenido dasdasdas" ,"! Su cuenta ha sido creada Exitosa mente ¡", "success")
         this.$router.replace('/hello')
       }, (err) => {
         swal ( "Oops" ,  "!" + err.message +"¡" ,  "error" )
       })
+
     },
     //------------------------------------------
   }

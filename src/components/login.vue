@@ -3,10 +3,10 @@
     <form @sumbit.prevent="iniciarsesion">
         <div class="my-content ">
                   <span id="titulo" class="d-flex justify-content-center">
-                    <p class="text-dark">I</p>
-                    <p class="text-danger">n</p>
-                    <p class="text-info">i</p>
-                    <p class="text-success">c</p>
+                    <p class="text-danger">I</p>
+                    <p class="text-warning">n</p>
+                    <p class="text-dark">i</p>
+                    <p class="text-info">c</p>
                     <p class="text-warning">i</p>
                     <p class="text-white">a</p>
                     <p class="text-success">r</p>
@@ -16,18 +16,13 @@
                     <p class="text-success">i</p>
                     <p class="text-white">ó</p>
                     <p class="text-dark">n</p>
-                  
-                   </span>
-                  <img src="https://image.flaticon.com/icons/svg/265/265760.svg" height="200" width="200" alt="">
-              <b-button  variant="danger" @click="signingoogle()" v-b-popover.hover.auto="'Inicie con Google'" >
-                <i class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
-                Google
-                </b-button>
 
-            <b-button variant="primary" @click="signinfacebook()" v-b-popover.hover.top="'Inicie con Facebook'"  >
-                <i class="fa fa-facebook fa-2x" aria-hidden="true" ></i>
-                Facebook
-            </b-button><br><br>
+                   </span>
+                   <div class="ml-5">
+                     <img class=" justify-content-center ml-5" src="https://image.flaticon.com/icons/svg/265/265760.svg" height="200" width="200" alt="">
+
+                   </div>
+                  <br>
 
             <div class="input-group margin-bottom-sm">
               <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw fa-2x"></i></span>
@@ -69,7 +64,7 @@ export default {
 
 	methods: {
     //-----------------------------------------------------------
-    // FUNCION PARA INICIAR SESION
+    // METODO PARA INICIAR SESION
 	  iniciarsesion() {
 	    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((value) => {
         swal('Usted se encuetra con una cuenta activa')
@@ -79,13 +74,13 @@ export default {
       })
     },
     //-----------------------------------------------------------
-    // FUNCION PARA CAMBIAR ESTADO Y VOLVER
+    // METODO PARA CAMBIAR ESTADO Y VOLVER
     volver () {
       this.$store.state.tipo = !this.$store.state.tipo
      this.$router.replace('/')
    },
    //-----------------------------------------------------------
-   // FUNCION PARA INICIAR SESION CON GOOGLE
+   // METODO PARA INICIAR SESION CON GOOGLE
    signingoogle () {
      if (!firebase.auth().currentUser ) {
        var provider = new firebase.auth.GoogleAuthProvider();
@@ -108,7 +103,7 @@ export default {
      }
    },
    //-----------------------------------------------------------
-   // FUNCION PARA INICIAR SESION CON FACEBOOK
+   // METODO PARA INICIAR SESION CON FACEBOOK
    signinfacebook () {
      if (!firebase.auth().currentUser ) {
        var provider = new firebase.auth.FacebookAuthProvider();
@@ -135,7 +130,7 @@ export default {
 }
 </script>
 //--------------------------------------------------------------------------------------------------------------
-<style scoped> 
+<style scoped>
 @import url('https://fonts.googleapis.com/css?family=Chelsea+Market|Finger+Paint|Happy+Monkey|Londrina+Sketch|Love+Ya+Like+A+Sister|The+Girl+Next+Door');
 
 #cuerpo {

@@ -20,9 +20,8 @@
 
 
       <div class=" d-flex">
-
             <div class="" variant="success">
-              <b-btn  class="ml-2 mb-3 butt "v-b-modal.modal-center variant="success">Visualizar señal Paciente</b-btn>
+              <b-btn  class="ml-2 mb-3 butt" v-b-modal.modal-center variant="success" @click="cargarseñal()">Visualizar señal Paciente</b-btn>
               <b-modal id="modal-center"
                 variant="primary"
                 centered title="Seleccione el paciente"
@@ -33,16 +32,20 @@
                 body-text-variant="dark"
                 footer-bg-variant="warning"
                 footer-text-variant="dark">
+                <i class="fa fa-spinner fa-spin" style="font-size:48px;color:rgb(226, 93, 85)"></i>
                 <b-button-group size="sm" v-for="paciente in dataseñales" :key="paciente.id" class="m-1">
-                  <b-btn class="butt" v-b-popover.hover="paciente.p_caract" :title="'Fecha de registro: '+paciente.fecha" variant="info" @click="traer( paciente.signal, paciente.first_name, paciente.last_name, paciente.fecha, paciente.p_caract, paciente.id)">
-                    {{ paciente.first_name }} {{ paciente.last_name }}
+                  <b-btn class="butt" v-b-popover.hover.bottom=" 'Id:'+paciente.id+'\n'+'Edad: '+paciente.Edad" :title="'Fecha de registro: '+ paciente.Fecha" variant="primary"
+                  @click="GraficarSeñal(paciente.Elapsed_time, paciente.I, paciente.II, paciente.III, paciente.AVR, paciente.AVL, paciente.AVF, paciente.V1, paciente.V2, paciente.V3, paciente.V4, paciente.V5, paciente.V6, paciente.Nombre, paciente.Informacion_Diagnostico, paciente.id)">
+                    {{ paciente.Nombre }}
                   </b-btn>
                 </b-button-group>
+                <div class="loader-inner ball-pulse"></div>
               </b-modal>
             </div>
 
             <div class="" variant="success">
-              <b-btn  @click="show=true" class="ml-2 mb-3 "v-b-modal.modal-center1 variant="warning">Agregar Diagnostico</b-btn>
+              <b-btn  @click="show=true" class="ml-2 mb-3" v-b-modal.modal-center1 variant="warning">Agregar Diagnostico</b-btn>
+
               <b-modal id="modal-center1"
                 variant="primary"
                 centered title="Ingrese El diagnostico del Paciente"
@@ -53,14 +56,17 @@
                 body-text-variant="dark"
                 footer-bg-variant="warning"
                 footer-text-variant="dark">
+
                  <b-button variant="dark" size="sm" class="mt-2 mb-2 ">
-                   <p class="m-1 "> <strong>{{ this.nombre }} {{this.apellido}}</strong></p>
+                   <p class="m-1 "> <strong>{{ this.nombre }} </strong></p>
                  </b-button>
+
                 <b-form-textarea id="textarea1" v-model="diagnostico"
                      placeholder="Escriba Aqui"
                     :rows="14"
                     :max-rows="8">
                 </b-form-textarea>
+
                 <b-btn size="sm" class="m-2 float-right  butt" variant="success" @click="Dictamen()">
                   Enviar
                 </b-btn>
@@ -72,10 +78,43 @@
 
     </div>
 
-    <div id="myDiv" class="container"></div>
+    <div class=" cnt d-flex">
+      <div id="myDivI" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+      <div id="myDivV1" class="container mt-1 ml-1 mr-2 mb-1"></div>
+    </div>
 
-  </div>
+    <div class="cnt d-flex">
+      <div id="myDivII" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+      <div id="myDivV2" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+    </div>
+
+    <div class="cnt d-flex">
+      <div id="myDivIII" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+      <div id="myDivV3" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+    </div>
+
+    <div class="cnt d-flex">
+      <div id="myDivAVR" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+      <div id="myDivV4" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+    </div>
+
+    <div class="cnt d-flex">
+      <div id="myDivAVL" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+      <div id="myDivV5" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+    </div>
+
+    <div class="cnt d-flex">
+      <div id="myDivAVF" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+      <div id="myDivV6" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+    </div>
+
+
+</div>
+
+
+
 </template>
+
 <script>
 import axios from 'axios'
 import plotly from 'plotly.js'
@@ -86,12 +125,22 @@ export default {
       return{
         show: false,
         dataseñales:[],
-        x:[],
-				y:[],
+        id:'',
+        I: [],
+        II: [],
+        III: [],
+        AVR: [],
+        AVL: [],
+        AVF: [],
+        V1: [],
+        V2: [],
+        V3: [],
+        V4: [],
+        V5: [],
+        V6: [],
         id:'',
         fecha:'....',
         nombre:'Nombre',
-        apellido:'Paciente',
         diagnostico:''
 
       }
@@ -102,94 +151,223 @@ export default {
     },
 //-------------------------------------------------------------------------
     mounted() {
-      this.GraficarSeñal()
-      this.cargarseñal();
+    this.GraficarSeñal()
+    this.cargarseñal();
     },
 //-------------------------------------------------------------------------
   methods: {
     //------------------------------------------------------------
     cargarseñal(){
-      axios.get('http://localhost:3000/pacientes')
+      axios.get('http://localhost:3000/muestras')
       .then((res) => {
         this.dataseñales = res.data
       })
     },
     //------------------------------------------------------------
-    traer() {
-      this.x =[]
-      this.y=[]
-      this.fecha =''
-      this.nombre=''
-      this.diagnostico=''
-      this.id=''
-      arguments[0].forEach((item) => {
-        this.x.push(item.hora)
-        this.y.push(item.señal)
-      })
-      this.nombre = arguments[1]
-  		this.apellido= arguments[2]
-  		this.fecha = arguments[3]
-      this.diagnostico=arguments[4]
-      this.id=arguments[5]
-
-      this.GraficarSeñal()
-    },
-    //------------------------------------------------------------
     Dictamen(){
 
-      var url = 'http://localhost:3000/pacientes/'+this.id
+      var url = 'http://localhost:3000/muestras/'+this.id
       console.log(url);
 
-      axios.post( url , {
-        "p_caract": this.diagnostico
+      axios.patch( url , {
+        Informacion_Diagnostico: this.diagnostico
       })
       .then(function (response) {
         console.log(response);
-        this.cargarseñal()
         swal({
           icon: 'success',
           title: 'El diagnostico ha sido guardado con exito'
-        })
+        });
       })
       .catch(function (error) {
+        swal({
+          icon: 'error',
+          title: 'El diagnostico no se ha podido guardar'
+        })
         console.log(error);
       });
 
     },
+    //------------------------------------------------------------
 
     //------------------------------------------------------------
     GraficarSeñal() {
-      var myPlot = document.getElementById('myDiv'),
-      x = this.x,
-      y1 = this.y,
-      trace1 = { x:x, y:y1,
+      var myPlot = document.getElementById('myDiv')
+      var myPlot = document.getElementById('myDiv1')
+
+      this.I= arguments[1]
+      this.II= arguments[2]
+      this.III= arguments[3]
+      this.AVR= arguments[4]
+      this.AVL= arguments[5]
+      this.AVF= arguments[6]
+      this.V1= arguments[7]
+      this.V2= arguments[8]
+      this.V3= arguments[9]
+      this.V4= arguments[10]
+      this.V5= arguments[11]
+      this.V6= arguments[12]
+      this.nombre= arguments[13]
+      this.diagnostico=arguments[14]
+      this.id=arguments[15]
+
+      var trace1 = {
+        x:arguments[0],
+        y:this.I,
         type:'scatter',
-        name: 'AAPL Low',
+        name: 'DI',
         mode:'lines',
          line: {
-           color: '#80CAF6',
-           width: 2
+           color: '#76e20a',
+           shape: 'spline',
           }
       }
-      var data = [ trace1 ],
-      layout = {
-          hovermode:'closest',
-          title:'Señal Electrocardiografica '+this.nombre+' '+this.apellido+'  registrado el : '+this.fecha,
+      var trace2 = {
+        x:arguments[0],
+        y:this.II,
+        type:'scatter',
+        name: 'DII',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+        }
+      }
+      var trace3 = {
+        x:arguments[0],
+         y:this.III,
+        type:'scatter',
+        name: 'DIII',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceAVR = {
+        x:arguments[0],
+        y:this.AVR,
+        type:'scatter',
+        name: 'AVR',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceAVL = {
+        x:arguments[0],
+        y:this.AVL,
+        type:'scatter',
+        name: 'AVL',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceAVF = {
+        x:arguments[0],
+        y:this.AVF,
+        type:'scatter',
+        name: 'AVF Low',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceV1 = {
+        x:arguments[0],
+        y:this.V1,
+        type:'scatter',
+        name: 'V1',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceV2 = {
+        x:arguments[0],
+        y:this.V2,
+        type:'scatter',
+        name: 'V2',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceV3 = {
+        x:arguments[0],
+        y:this.V3,
+        type:'scatter',
+        name: 'V3',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceV4 = { x:arguments[0], y:this.V4,
+        type:'scatter',
+        name: 'V4',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceV5 = { x:arguments[0], y:this.V5,
+        type:'scatter',
+        name: 'V5',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+      var traceV6 = { x:arguments[0], y:this.V6,
+        type:'scatter',
+        name: 'V6',
+        mode:'lines',
+         line: {
+           color: '#76e20a',
+           shape: 'spline',
+            }
+      }
+
+      var dataI = [trace1], dataII = [trace2], dataIII = [trace3], dataAVR = [traceAVR], dataAVL = [traceAVL],dataAVF = [traceAVF],
+      dataV1 = [traceV1], dataV2 = [traceV2], dataV3 = [traceV3], dataV4 = [traceV4], dataV5 = [traceV5], dataV6 = [traceV6],
+
+
+
+    layout = {
+          title:'Paciente: '+arguments[13],
           paper_bgcolor: 'rgba(24, 36, 37, 0.98)',
-          plot_bgcolor: 'rgba(35, 47, 48, 0.96)',
-          margin: {
-            l:50,
-            r:30,
-            b:90,
-            t:50,
-            pad:4
+					plot_bgcolor: 'rgba(35, 47, 48, 0.96)',
+            width: 660,
+            height: 250,
+            margin: {
+            l:25,
+            r:25,
+            b:25,
+            t:30,
           },
+          showlegend: true,
+          hoverlabel:{
+            bgcolor:'rgb(159, 19, 65)',
+            bordercolor:'rgb(249, 239, 242)'
+          },
+
           font: {
             size: 10,
             color: 'rgb(242, 242, 242)'
           },
           xaxis: {
+            type: 'date',
             title: 'Hora',
+            color:'rgb(11, 141, 235)',
             titlefont: {
               color: 'rgb(170, 161, 162)',
               size: 10
@@ -198,14 +376,29 @@ export default {
 
           yaxis: {
             title: 'Amplitud ',
+            color:'rgb(11, 141, 235)',
             titlefont: {
               color: 'rgb(170, 161, 162)',
               size: 10
             }
           }
 
-       };
-      Plotly.newPlot('myDiv', data, layout);
+       }
+
+
+      Plotly.newPlot('myDivI', dataI, layout);
+      Plotly.newPlot('myDivII', dataII, layout);
+      Plotly.newPlot('myDivIII', dataIII, layout);
+      Plotly.newPlot('myDivAVR', dataAVR, layout);
+      Plotly.newPlot('myDivAVL', dataAVL, layout);
+      Plotly.newPlot('myDivAVF', dataAVF, layout);
+      Plotly.newPlot('myDivV1', dataV1, layout);
+      Plotly.newPlot('myDivV2', dataV2, layout);
+      Plotly.newPlot('myDivV3', dataV3, layout);
+      Plotly.newPlot('myDivV4', dataV4, layout);
+      Plotly.newPlot('myDivV5', dataV5, layout);
+      Plotly.newPlot('myDivV6', dataV6, layout);
+
     }
   },
 //-------------------------------------------------------------------------
@@ -228,4 +421,80 @@ export default {
     font-size: 60px;
     text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;
   }
+
+  .loader {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 100px auto;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-animation: load4 1.3s infinite linear;
+  animation: load4 1.3s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+@-webkit-keyframes load4 {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+@keyframes load4 {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+
+.ball-grid-pulse > div {
+  background-color: orange;
+}
+
+
 </style>
