@@ -2,11 +2,11 @@
   <div id="hello" class="" >
        <div class=" ">
 
-      <b-navbar toggleable="" class="" type="dark" variant="dark" >
+      <b-navbar toggleable="" class="" type="info" variant="dark" >
 
       <b-navbar-brand class="">
       <img src="https://image.flaticon.com/icons/svg/119/119067.svg"  height="50" width="50" class="text-info">
-         <strong class="text-info"> Visualización Señales ECG</strong>
+         <strong class="text-light"> Visualización Señales ECG</strong>
        </b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse" class="text-center">
@@ -14,7 +14,7 @@
           <b-navbar-nav class="ml-auto" >
             <b-nav-item  active-class="activo" >
               <i class="fa fa-bar-chart text-warning" aria-hidden="true"></i>
-              <router-link to="/hello/D_señal" class="h5 text-info">
+              <router-link to="/hello/D_señal" class="h5 text-light">
               Datos
               </router-link>
 
@@ -22,12 +22,12 @@
 
             <b-nav-item active-class="activo" >
               <i class="fa fa-map text-warning " aria-hidden="true"></i>
-              <router-link to="/hello/P_Señal" class="h5 text-info">Analisar Señal</router-link>
+              <router-link to="/hello/P_Señal" class="h5 text-light">Analisar Señal</router-link>
             </b-nav-item>
 
             <b-nav-item active-class="activo">
               <i class="fa fa-line-chart text-warning " aria-hidden="true"></i>
-              <router-link to="/hello/S_Realtime" exact class="h5 text-info">Tiempo Real</router-link>
+              <router-link to="/hello/S_Realtime" exact class="h5 text-light">Tiempo Real</router-link>
             </b-nav-item>
           </b-navbar-nav>
 
@@ -124,11 +124,11 @@ export default {
 #hello {
   font-family: 'Chelsea Market', cursive;
   background-color: rgb(138, 82, 104);
-  background-image: url("https://images.pexels.com/photos/197919/pexels-photo-197919.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb");
-  background-size: cover;
+  background-image: url("https://images.pexels.com/photos/415779/pexels-photo-415779.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: auto;
   justify-content: center;
   align-items: center;
-  height:230vh;
+  height:235vh;
   ;
 }
 .router-link-active{

@@ -17,8 +17,8 @@
     		</div>
       </div>
 
-      <div class="boo bg-warning container mx-auto mr-5 ml-5 mt-1">
-        <span class="cnt d-flex ml-3">
+      <div class="boo bg-warning container mx-auto mr-5 ml-5 mt-4">
+        <span class="cnt d-flex ml-3 mt-3">
           <p class=" h1 text-danger">P</p>
           <p class=" h1 text-dark">acientes</p>
           <p class=" h1 text-danger"> A</p>

@@ -7,9 +7,10 @@
 
 				<p class="text-warning">T</p>
 				<p class="text-success">i</p>
-				<p class="text-info">em</p>
+				<p class="text-white">e</p>
+				<p class="text-dark">m</p>
 				<p class="text-info">p</p>
-				<p class="text-info">o</p>
+				<p class="text-white">o</p>
 				<i class="fa fa-heartbeat text-danger" aria-hidden="true"></i>
 				<p class="text-success">R</p>
 				<p class="text-warning">e</p>
