@@ -12,5 +12,6 @@ export const store = new Vuex.Store({
 		email:'',
 		password:'',
 		view:'100vh',
+		email_verified: null
 	}
 })

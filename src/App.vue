@@ -1,11 +1,11 @@
 <template>
-<div > 
-    
+<div >
+
   <transition appear mode="out-in"
         name="animate.css"
         enter-active-class="animated rotateInUpLeft"
         leave-active-class="animated zoomOutUp">
-    
+
         <div id="app" class="container-fluid slider d-flex justify-content-center" v-if="this.$store.state.tipo">
             <div class="">
               <b-jumbotron class="jumbo text-white" header="Sistema De Visualización Señales Electrocardiográficas ECG" lead="Universidad de los Llanos " >
@@ -14,7 +14,7 @@
                 <a class="alert-link" href="https://github.com/viktorhugo/proyecto-ecg">Informacion</a>
                 </b-btn>
               </b-jumbotron>
-            </div>    
+            </div>
         </div>
 
       <div v-else>
@@ -22,7 +22,7 @@
       </div>
 
   </transition>
-  
+
  </div>
 </template>
 //--------------------------------------------------------------------------------------------------------------
@@ -37,11 +37,11 @@ export default {
  },
 //---------------------------------------------
  created() {
-   
+
  },
 //---------------------------------------------
  methods: {
-   
+
    cambiartipo() { // CAMBIAR ESTADO GLOBAL DE VARIABLE
      this.$store.state.tipo = !this.$store.state.tipo
     this.$router.replace('/login')

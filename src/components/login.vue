@@ -1,6 +1,6 @@
 <template>
   <div id="cuerpo" class="">
-    <form @sumbit.prevent="iniciarsesion">
+    <b-form @sumbit.prevent="iniciarsesion" >
         <div class="my-content ">
                   <span id="titulo" class="d-flex justify-content-center">
                     <p class="text-danger">I</p>
@@ -20,20 +20,20 @@
                    </span>
                    <div class="ml-5">
                      <img class=" justify-content-center ml-5" src="https://image.flaticon.com/icons/svg/265/265760.svg" height="200" width="200" alt="">
-
                    </div>
-                  <br>
 
-            <div class="input-group margin-bottom-sm">
+
+            <div class="input-group margin-bottom-sm mt-4 mb-4">
               <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw fa-2x"></i></span>
-              <input class="form-control" v-model="email" required type="email" placeholder="Email">
-            </div><br>
+              <input class="form-control" v-model="email" @keyup.enter="iniciarsesion"  type="email" placeholder="Email" required>
+            </div>
 
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-key fa-fw fa-2x"></i></span>
-              <input class="form-control" v-model="password" required type="password"  placeholder="Contraseña">
-            </div><br><br>
-            <div class="text-center  align-bottom">
+            <div class="input-group mb-4">
+              <span class="input-group-addon"><i class="fa fa-key fa-fw fa-2x "></i></span>
+              <input class="form-control" v-model="password" type="password" @keyup.enter="iniciarsesion"  placeholder="Contraseña" required >
+            </div>
+
+            <div class="text-center  align-bottom mb-2">
                 <b-button  @click="iniciarsesion()" variant="success">
                 <i  class="fa fa-check fa-1x " aria-hidden="true"></i>
                 Ingresar
@@ -44,9 +44,10 @@
                 Volver
                 </b-button><br>
             </div>
-               <br> <p class="text-warning">No tienes una cuenta ? <router-link to="/crearcuenta"> Crea una</router-link></p><br>
+
+            <p class="text-warning">No tienes una cuenta ? <router-link to="/crearcuenta"> Crea una</router-link></p><br>
       </div>
-    </form>
+    </b-form>
   </div>
 </template>
 //--------------------------------------------------------------------------------------------------------------
@@ -66,12 +67,17 @@ export default {
     //-----------------------------------------------------------
     // METODO PARA INICIAR SESION
 	  iniciarsesion() {
-	    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((value) => {
-        swal('Usted se encuetra con una cuenta activa')
-        this.$router.replace('/hello')
-      }, (err) => {
-        swal ( "Oops" ,  "! " + err.message +" ¡" ,  "error" )
-      })
+      if (this.email === '' || this.password === '') {
+        swal ( "Algo salio mal !" , "Ingrese todos los datos requeridos" ,  "info" )
+      }else {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((value) => {
+          swal('Usted se encuetra con una cuenta activa')
+          this.$router.replace('/hello')
+        }, (err) => {
+          swal ( "Algo salio mal !" ,  "! " + err.message +" ¡" ,  "error" )
+        })
+      }
+
     },
     //-----------------------------------------------------------
     // METODO PARA CAMBIAR ESTADO Y VOLVER
@@ -134,7 +140,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Chelsea+Market|Finger+Paint|Happy+Monkey|Londrina+Sketch|Love+Ya+Like+A+Sister|The+Girl+Next+Door');
 
 #cuerpo {
-  font-family: 'Chelsea Market', cursive;
+font-family: 'Chelsea Market', cursive;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -161,6 +167,7 @@ h1, p{
 #titulo{
   font-size: 60px;
   text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;
+  font-family: 'Chelsea Market', cursive;
 }
 
 </style>

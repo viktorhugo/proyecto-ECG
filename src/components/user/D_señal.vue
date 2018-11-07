@@ -61,6 +61,7 @@
 <script>
 import axios from 'axios';
 import swal from 'sweetalert'
+import firebase from 'firebase'
 export default {
   name: "proceso2",
   data(){
@@ -74,6 +75,9 @@ export default {
 //-------------------------------------------------------------------------
   created() {
     //do something after creating vue instance
+    let user = firebase.auth().currentUser;
+    var emailVerified = user.emailVerified;
+    console.log('el usuario esta '+ emailVerified);
 
 
   },

@@ -2,6 +2,7 @@
 // ARCHIVO MANEJADOR DE RUTAS ENTRE LAS VISTAS
 import login from './components/login.vue'
 import info from './components/info.vue'
+import firebase from 'firebase'
 import crearcuenta from './components/crearcuenta.vue'
 import hello from './components/user/hello.vue'
 import D_señal from './components/user/D_señal.vue';
@@ -32,9 +33,7 @@ export const routes = [
 			{path:'S_Realtime', component: S_Realtime}
 
 		],
-		meta:{
-			requiresAuth: true
-		}
+		meta: { requiresAuth: true }
 	}
 
 ]

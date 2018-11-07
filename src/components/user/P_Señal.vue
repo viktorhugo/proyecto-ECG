@@ -35,7 +35,7 @@
                 <i class="fa fa-spinner fa-spin" style="font-size:48px;color:rgb(226, 93, 85)"></i>
                 <b-button-group size="sm" v-for="paciente in dataseñales" :key="paciente.id" class="m-1">
                   <b-btn class="butt" v-b-popover.hover.bottom=" 'Id:'+paciente.id+'\n'+'Edad: '+paciente.Edad" :title="'Fecha de registro: '+ paciente.Fecha" variant="primary"
-                  @click="GraficarSeñal(paciente.Elapsed_time, paciente.I, paciente.II, paciente.III, paciente.AVR, paciente.AVL, paciente.AVF, paciente.V1, paciente.V2, paciente.V3, paciente.V4, paciente.V5, paciente.V6, paciente.Nombre, paciente.Informacion_Diagnostico, paciente.id)">
+                  @click="GraficarSeñal(paciente.Elapsed_time, paciente.I, paciente.II, paciente.III, paciente.AVR, paciente.AVL, paciente.AVF, paciente.V1, paciente.V2, paciente.V3, paciente.V4, paciente.V5, paciente.V6, paciente.Nombre, paciente.Informacion_Diagnostico, paciente.id, paciente.Info_tecnica)">
                     {{ paciente.Nombre }}
                   </b-btn>
                 </b-button-group>
@@ -108,6 +108,60 @@
       <div id="myDivV6" class="container mt-1 ml-1 mr-2 mb-1 "></div>
     </div>
 
+    <div class=" container d-flex text-center d-block m-5 ">
+        <div>
+            <canvas id="myChart1" class="mr-2 rounded pl- pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+        <div>
+            <canvas id="myChart2" class="mr-2 rounded pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+    </div>
+
+    <div class=" container d-flex text-center d-block m-5 ">
+        <div>
+            <canvas id="myChart3" class="mr-2 rounded pl- pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+        <div>
+            <canvas id="myChart4" class="mr-2 rounded pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+    </div>
+
+    <div class=" container d-flex text-center d-block m-5 ">
+        <div>
+            <canvas id="myChart5" class="mr-2 rounded pl- pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+        <div>
+            <canvas id="myChart6" class="mr-2 rounded pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+    </div>
+
+    <div class=" container d-flex text-center d-block m-5 ">
+        <div>
+            <canvas id="myChart7" class="mr-2 rounded pl- pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+        <div>
+            <canvas id="myChart8" class="mr-2 rounded pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+    </div>
+
+    <div class=" container d-flex text-center d-block m-5 ">
+        <div>
+            <canvas id="myChart9" class="mr-2 rounded pl- pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+        <div>
+            <canvas id="myChart10" class="mr-2 rounded pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+    </div>
+
+    <div class=" container d-flex text-center d-block m-5 ">
+        <div>
+            <canvas id="myChart11" class="mr-2 rounded pl- pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+        <div>
+            <canvas id="myChart12" class="mr-2 rounded pb-3 pr-2 pt-4" style="width: 600px; height:250px;"></canvas>
+        </div>
+    </div>
+
 
 </div>
 
@@ -119,6 +173,7 @@
 import axios from 'axios'
 import plotly from 'plotly.js'
 import swal from 'sweetalert'
+import Chart from 'chart.js';
 export default {
 
     data() {
@@ -192,6 +247,9 @@ export default {
 
     //------------------------------------------------------------
     GraficarSeñal() {
+
+
+      console.log(arguments[14]);
       var myPlot = document.getElementById('myDiv')
       var myPlot = document.getElementById('myDiv1')
 
@@ -342,7 +400,7 @@ export default {
 
 
 
-    layout = {
+      layout = {
           title:'Paciente: '+arguments[13],
           paper_bgcolor: 'rgba(24, 36, 37, 0.98)',
 					plot_bgcolor: 'rgba(35, 47, 48, 0.96)',
@@ -386,20 +444,495 @@ export default {
        }
 
 
-      Plotly.newPlot('myDivI', dataI, layout);
-      Plotly.newPlot('myDivII', dataII, layout);
-      Plotly.newPlot('myDivIII', dataIII, layout);
-      Plotly.newPlot('myDivAVR', dataAVR, layout);
-      Plotly.newPlot('myDivAVL', dataAVL, layout);
-      Plotly.newPlot('myDivAVF', dataAVF, layout);
-      Plotly.newPlot('myDivV1', dataV1, layout);
-      Plotly.newPlot('myDivV2', dataV2, layout);
-      Plotly.newPlot('myDivV3', dataV3, layout);
-      Plotly.newPlot('myDivV4', dataV4, layout);
-      Plotly.newPlot('myDivV5', dataV5, layout);
-      Plotly.newPlot('myDivV6', dataV6, layout);
+        Plotly.newPlot('myDivI', dataI, layout );
+        Plotly.newPlot('myDivII', dataII, layout);
+        Plotly.newPlot('myDivIII', dataIII, layout);
+        Plotly.newPlot('myDivAVR', dataAVR, layout);
+        Plotly.newPlot('myDivAVL', dataAVL, layout);
+        Plotly.newPlot('myDivAVF', dataAVF, layout);
+        Plotly.newPlot('myDivV1', dataV1, layout);
+        Plotly.newPlot('myDivV2', dataV2, layout);
+        Plotly.newPlot('myDivV3', dataV3, layout);
+        Plotly.newPlot('myDivV4', dataV4, layout);
+        Plotly.newPlot('myDivV5', dataV5, layout);
+        Plotly.newPlot('myDivV6', dataV6, layout);
 
-    }
+        var dI = document.getElementById('myChart1').getContext('2d');
+       var v1 = document.getElementById('myChart2').getContext('2d');
+       var dII = document.getElementById('myChart3').getContext('2d');
+       var v2 = document.getElementById('myChart4').getContext('2d');
+       var dIII = document.getElementById('myChart5').getContext('2d');
+       var v3 = document.getElementById('myChart6').getContext('2d');
+       var avr = document.getElementById('myChart7').getContext('2d');
+       var v4 = document.getElementById('myChart8').getContext('2d');
+       var avl = document.getElementById('myChart9').getContext('2d');
+       var v5 = document.getElementById('myChart10').getContext('2d');
+       var avf = document.getElementById('myChart11').getContext('2d');
+       var v6 = document.getElementById('myChart12').getContext('2d');
+
+       var dataI = {
+           label: 'Paciente: '+arguments[13]+' Derivacion DI, FC: '+arguments[16].FC+'P: '+arguments[16].FC+'PR:'+arguments[16].PR+'QRS :'+arguments[16].QRS+'QT_QTC: '+arguments[16].QT_QTC+'P_QRS_T: '+arguments[16].P_QRS_T,
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.I,
+           labels: arguments[1]
+
+       };
+       var dataII = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.II,
+           labels: arguments[1],
+
+       };
+       var dataIII = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.III,
+
+       };
+       var dataAVR = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.AVR,
+
+       };
+       var dataAVF = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.AVF,
+
+       };
+       var dataAVL = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.AVL,
+
+       };
+       var dataV1 = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.V1,
+
+       };
+       var dataV2 = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.V2,
+
+       };
+       var dataV3 = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.V3,
+
+       };
+       var dataV4 = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.V4,
+
+       };
+       var dataV5 = {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.V5,
+
+       };
+       var dataV6= {
+           label: "Car B - Speed (mph)",
+           borderColor: 'black',
+           borderWidth: 1.2,
+           lineTension: 0.3,
+           fill: false,
+           backgroundColor: 'transparent',
+           options: {
+               pointStyle: 'line'
+           },
+           data:this.V6,
+
+       };
+
+
+
+       var speedData1 = {
+           labels: arguments[1],
+           datasets: [dataI]
+       };
+
+       var speedData2 = {
+           labels: arguments[1],
+           datasets: [dataII]
+       };
+
+       var speedData3 = {
+           labels: arguments[1],
+           datasets: [dataIII]
+       };
+
+       var speedData4 = {
+           labels: arguments[1],
+           datasets: [dataAVF]
+       };
+
+       var speedData5 = {
+           labels: arguments[1],
+           datasets: [dataAVL]
+       };
+
+       var speedData6 = {
+           labels: arguments[1],
+           datasets: [dataAVR]
+       };
+       var speedData7 = {
+           labels: arguments[1],
+           datasets: [dataV1]
+       };
+       var speedData8 = {
+           labels: arguments[1],
+           datasets: [dataV2]
+       };
+       var speedData9 = {
+           labels: arguments[1],
+           datasets: [dataV3]
+       };
+       var speedData10 = {
+           labels: arguments[1],
+           datasets: [dataV4]
+       };
+       var speedData11 = {
+           labels: arguments[1],
+           datasets: [dataV5]
+       };
+       var speedData12 = {
+           labels: arguments[1],
+           datasets: [dataV6]
+       };
+
+
+
+       var lineChart = new Chart(dI, {
+           type: 'line',
+           data: speedData1,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: true
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           }
+       }
+       );
+
+       var lineChart = new Chart(dII, {
+           type: 'line',
+           data: speedData2,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       });
+
+       var lineChart = new Chart(dIII, {
+           type: 'line',
+           data: speedData3,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+
+       var lineChart = new Chart(avf, {
+           type: 'line',
+           data: speedData4,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+
+       var lineChart = new Chart(avl, {
+           type: 'line',
+           data: speedData5,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+       var lineChart = new Chart(avr, {
+           type: 'line',
+           data: speedData6,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+       var lineChart = new Chart(v1, {
+           type: 'line',
+           data: speedData7,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+       var lineChart = new Chart(v2, {
+           type: 'line',
+           data: speedData8,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+       var lineChart = new Chart(v3, {
+           type: 'line',
+           data: speedData9,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+       var lineChart = new Chart(v4, {
+           type: 'line',
+           data: speedData10,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+       var lineChart = new Chart(v5, {
+           type: 'line',
+           data: speedData11,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       });
+       var lineChart = new Chart(v6, {
+           type: 'line',
+           data: speedData12,
+           options: {
+               elements: {
+                   point: {
+                       radius: 0
+                   }
+               },
+               scales: {
+                   xAxes: [{
+                       display: false
+                   }],
+                   yAxes: [{
+                       display: true
+                   }]
+               }
+           },
+       },
+       );
+
+    },
+
+
   },
 //-------------------------------------------------------------------------
 
@@ -421,6 +954,12 @@ export default {
     font-size: 60px;
     text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;
   }
+
+  canvas {
+        background-image: url(http://consejosparaimprimironline.imprimiralultimominuto.es/wp-content/uploads/Millimeterpapier.jpg);
+        background-size: 100px 100px;
+        background-size: 8%;
+    }
 
   .loader {
   color: #ffffff;

@@ -27,12 +27,15 @@ const router = new VueRouter({ // OBJETO MANEJADOR DE RUTAS
 })
 
 //GUARDS DE VUE-ROUTER
-router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser;
-  let requiresAuth = to.matched.some( record => record.meta.requiresAuth);
 
-  if(requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('hello')
+router.beforeEach((to, from, next) => {
+
+  let user = firebase.auth().currentUser;
+  var emailVerified = user.emailVerified;
+  let requiresAuth = to.matched.some( ruta => ruta.meta.requiresAuth);
+
+  if(requiresAuth && !user ) next('login')
+  else if (!requiresAuth && user ) next('hello')
   else next()
 });
 
@@ -42,7 +45,9 @@ new Vue({
     router,
     Simplert,
     created() {
+
       firebase.initializeApp(config); // iniciacion firebase
+
       firebase.auth().onAuthStateChanged((user) => { // Gestion de Estado Auth
         if(user) {
           swal("Oopss", "Hay Un usuario Activo", "info");

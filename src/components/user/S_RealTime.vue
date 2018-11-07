@@ -113,103 +113,36 @@ methods: {
 //------------------------------------------------------------
 	GraficarSeñal() {
 
-				var time = new Date();
-
-				var data = [{
-				 x: [time],
-				 y: arguments[0],
-				  mode: 'lines',
-				  line: {
-						color: '#80CAF6',
-						shape: 'spline'
-					},
-				}]
-
-				var layout = {
-	          hovermode:'closest',
-	          title:'Señal ECG Paciente: '+arguments[1]+'   	Id: '+arguments[2]+'     Edad: '+arguments[3]+'     Derivacion:'+arguments[4],
-						paper_bgcolor: 'rgba(24, 36, 37, 0.98)',
-						plot_bgcolor: 'rgba(35, 47, 48, 0.96)',
-
-	          margin: {
-	            l:30,
-	            r:30,
-	            b:30,
-	            t:40,
-	            pad:4
-	          },
-	          font: {
-	            size: 10,
-	            color: 'rgb(242, 242, 242)'
-	          },
-						xaxis: {
-	            type: 'date',
-	            title: 'Hora',
-	            color:'rgb(11, 141, 235)',
-	            titlefont: {
-	              color: 'rgb(170, 161, 162)',
-	              size: 10
-	            }
-	          },
-
-	          yaxis: {
-	            title: 'Amplitud ',
-	            color:'rgb(11, 141, 235)',
-	            titlefont: {
-	              color: 'rgb(170, 161, 162)',
-	              size: 10
-	            }
-	          }
-	       }
-
-				Plotly.newPlot('graph', data, layout);
-
-				var cnt = 0;
-
-				var interval = setInterval(function() {
-				  var time = new Date();
-				  var update = {
-						x: [[time]],
-					  y: [[arguments[0]]]
-				  }
-
-				  Plotly.extendTraces('graph', update, [0])
-
-				  if(cnt === 100) clearInterval(interval);
-				}, -200);
-		  },
-//------------------------------------------------------------
-	GraficarSeña() {
-
 			var time = new Date();
 
 			var data = [{
 			x: [time],
-			y: arguments[2],
+			y: arguments[0],
 			mode: 'lines',
 			line: {color: '#80CAF6'}
 			}]
 
 			var layout = {
 					hovermode:'closest',
-					title:'Señal ECG Paciente '+this.nombre+' '+this.apellido+'  registrada en el : '+this.fecha,
+					title:'Señal ECG Paciente: '+arguments[1]+'   	Id: '+arguments[2]+'     Edad: '+arguments[3]+'     Derivacion:'+arguments[4],
 					paper_bgcolor: 'rgba(24, 36, 37, 0.98)',
 					plot_bgcolor: 'rgba(35, 47, 48, 0.96)',
+
 					margin: {
-						l:50,
+						l:30,
 						r:30,
-						b:90,
-						t:50,
+						b:30,
+						t:40,
 						pad:4
 					},
-
 					font: {
 						size: 10,
 						color: 'rgb(242, 242, 242)'
 					},
-
 					xaxis: {
+						type: 'date',
 						title: 'Hora',
+						color:'rgb(11, 141, 235)',
 						titlefont: {
 							color: 'rgb(170, 161, 162)',
 							size: 10
@@ -218,13 +151,14 @@ methods: {
 
 					yaxis: {
 						title: 'Amplitud ',
+						color:'rgb(11, 141, 235)',
 						titlefont: {
 							color: 'rgb(170, 161, 162)',
 							size: 10
 						}
-
 					}
 			 }
+
 
 			Plotly.newPlot('graph', data, layout );
 
@@ -236,7 +170,7 @@ methods: {
 
 			var update = {
 			x:  [[time]],
-			y: [[arguments[2]]]
+			y: [[arguments[0]]]
 			}
 
 			var olderTime = time.setMinutes(time.getMinutes() - 1);
@@ -253,7 +187,7 @@ methods: {
 			Plotly.extendTraces('graph', update, [0])
 
 			if(cnt === 100) clearInterval(interval);
-		}, 250);
+		}, 15);
 	}
 //-------------------------------------------------------------------------
 	},
