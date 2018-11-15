@@ -9,31 +9,38 @@ import D_señal from './components/user/D_señal.vue';
 import P_señal from './components/user/P_señal.vue';
 import S_Realtime from "./components/user/S_Realtime.vue";
 
+//let user = firebase.auth().currentUser;
+//var emailVerified = user.emailVerified;
+
 export const routes = [
-// OBJETO MANEJADOR DE RUTAS
+	// OBJETO MANEJADOR DE RUTAS
 	{
-		path:'/login',
-		component: login,
-		name:'login'
+		path: '*',
+		redirect: '/login'
 	},
 	{
-		path:'/info',
+		path: '/login',
+		component: login,
+		name: 'login'
+	},
+	{
+		path: '/info',
 		component: info
 	},
 	{
-		path:'/crearcuenta',
+		path: '/crearcuenta',
 		component: crearcuenta
 	},
 	{
-		path:'/hello',
+		path: '/hello',
 		component: hello,
 		children: [
-			{path:'D_señal',  component: D_señal },
-			{path:'P_señal', component: P_señal},
-			{path:'S_Realtime', component: S_Realtime}
+			{ path: 'D_señal', component: D_señal },
+			{ path: 'P_señal', component: P_señal },
+			{ path: 'S_Realtime', component: S_Realtime }
 
 		],
-		meta: { requiresAuth: true }
+		meta: {requiresAuth: true}
 	}
 
 ]

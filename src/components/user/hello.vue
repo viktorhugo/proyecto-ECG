@@ -1,8 +1,8 @@
 <template>
   <div id="hello" class="" >
-       <div class=" ">
+       <div class=" pb-5">
 
-      <b-navbar toggleable="" class="" type="info" variant="dark" >
+      <b-navbar toggleable="" class="fixed-top pb-0 anime" type="info"  variant="dark" >
 
       <b-navbar-brand class="">
       <img src="https://image.flaticon.com/icons/svg/119/119067.svg"  height="50" width="50" class="text-info">
@@ -35,11 +35,10 @@
             <b-nav-item-dropdown right>
               <template slot="button-content">
                 {{nombre }}
-                <b-img rounded="circle" :src="this.photo" width="40" height="40" class="m-1" />
+                <i class="fas fa-user-circle fa-3x text-warning"></i>
               </template>
 
-              <b-dropdown-item class="bg-info text-white"  href="#">Perfil</b-dropdown-item>
-              <b-dropdown-item class="bg-info text-white" @click="cerrarsesion()">
+              <b-dropdown-item class="bg-success text-white" @click="cerrarsesion()">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 Cerrar Sesion
               </b-dropdown-item>
@@ -69,20 +68,23 @@ export default {
       nombre: '',
       email:'',
       photo: '',
-      userId:''
+      userId:'',
+       //image: require('@/assets/__Heartrate.png')
     }
   },
 //-------------------------------------------------------------------------
   created() {
-  this.user = firebase.auth().currentUser;
-  if(this.user) {
-    this.nombre = this.user.displayName;
-    this.email = this.user.email;
-    this.photo = this.user.photoURL;
-    this.userId = this.user.userId
+  var user = firebase.auth().currentUser;
+  var emailVerified = user.emailVerified;
+
+  if (emailVerified){
     swal("Bienvenido "+ this.$store.state.nombre, "Visualizacion de señales", "success");
     this.$router.push('/hello/D_señal')
-    }
+  }else{
+    swal("Valide su cuenta por favor para poder ingresar", "", "info");
+    firebase.auth().signOut()
+  }
+
   },
 //-------------------------------------------------------------------------
   methods: {
@@ -107,6 +109,7 @@ export default {
                 icon: "success",
               }).then((value) => {
                 firebase.auth().signOut()
+                this.$router.push('/login')
               });
             } else {
               swal("Su sesion se encuetra todavia activa");
@@ -128,8 +131,7 @@ export default {
   background-size: auto;
   justify-content: center;
   align-items: center;
-  height:235vh;
-  ;
+  height:340vh;
 }
 .router-link-active{
   color: tomato;
@@ -137,4 +139,50 @@ export default {
 .activo{
   color: tomato;
 }
+.anime {
+	
+	color: #fff;
+	background: linear-gradient(-45deg, rgb(233, 44, 208), rgb(61, 184, 57), #23A6D5, #23D5AB, rgb(127, 35, 213));
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
 </style>

@@ -6,9 +6,9 @@ import BootstrapVue from 'bootstrap-vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import firebase from 'firebase'
-import {store} from './store'
-import {routes} from './routes'
-import {config} from './firebase'
+import { store } from './store'
+import { routes } from './routes'
+import { config } from './firebase'
 import Simplert from 'vue2-simplert'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -22,42 +22,43 @@ Vue.use(VueRouter)
 
 
 const router = new VueRouter({ // OBJETO MANEJADOR DE RUTAS
-  mode:'history',
+  mode: 'history',
   routes
 })
 
 //GUARDS DE VUE-ROUTER
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => { 
 
-  let user = firebase.auth().currentUser;
-  var emailVerified = user.emailVerified;
-  let requiresAuth = to.matched.some( ruta => ruta.meta.requiresAuth);
-
-  if(requiresAuth && !user ) next('login')
-  else if (!requiresAuth && user ) next('hello')
-  else next()
-});
+    //var user = firebase.auth().onAuthStateChanged() 
+    let user = firebase.auth().currentUser;
+    //var emailVerified = user.emailVerified;
+    let requiresAuth = to.matched.some(ruta => ruta.meta.requiresAuth);
+    if (requiresAuth && !user) next('login')
+    else if (!requiresAuth && user) next('hello')
+    else next()
+}); 
 
 //RENDERIZADO DE LA APLICACION
 new Vue({
-    el: '#app',
-    router,
-    Simplert,
-    created() {
+  el: '#app',
+  router,
+  Simplert,
+  created() {
 
-      firebase.initializeApp(config); // iniciacion firebase
+    firebase.initializeApp(config); // iniciacion firebase
 
-      firebase.auth().onAuthStateChanged((user) => { // Gestion de Estado Auth
-        if(user) {
-          swal("Oopss", "Hay Un usuario Activo", "info");
-          this.$router.push('/hello/D_señal')
-        } else {
-          this.$router.push('/login')
-        }
-      });
-    },
+    firebase.auth().onAuthStateChanged((user) => { // Gestion de Estado Auth
 
-    store,
-    render: h => h(App)
+      if (user && user.emailVerified) {
+        swal("Oopss", "Hay Un usuario Activo", "info");
+        this.$router.push('/hello')
+      } else {
+        this.$router.push('/')
+      }
+    });
+  },
+
+  store,
+  render: h => h(App)
 })

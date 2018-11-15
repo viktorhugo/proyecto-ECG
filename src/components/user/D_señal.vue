@@ -3,16 +3,16 @@
       <div class="container justify-content-center mt-5">
         <div class="mt-5 ">
     			<span id="titulo" class="cnt d-flex justify-content-center">
-    				<p class="text-success">D</p>
-    				<p class="text-warning">a</p>
-    				<p class="text-info">t</p>
-    				<p class="text-dark">o</p>
-    				<p class="text-info">s</p>
+    				<p class="text-dark">D</p>
+    				<p class="text-white">a</p>
+    				<p class="text-white">t</p>
+    				<p class="text-white">o</p>
+    				<p class="text-white">s</p>
     				<i class="fa fa-heartbeat text-danger" aria-hidden="true"></i>
             <p class="text-dark"></p>
-    				<p class="text-warning">E</p>
-    				<p class="text-success">C</p>
-    				<p class="text-info">G</p>
+    				<p class="text-white">E</p>
+    				<p class="text-dark">C</p>
+    				<p class="text-white">G</p>
     			 </span>
     		</div>
       </div>
@@ -34,8 +34,12 @@
       </div>
 
     <div class=" mr-5 ml-5 mt-1 d-flex ">
-        <b-btn  class="ml-5 butt" v-b-modal.modal-center variant="primary">Consultar pacientes</b-btn>
-        <b-button  class=" ml-5" variant="success" @click="ActDatos()">Actualizar los Datos</b-button>
+        <b-btn  class="ml-5 butt" v-b-modal.modal-center variant="primary">
+          <i class="fas fa-search-plus fa-2x"></i></i> Consultar pacientes
+        </b-btn>
+        <b-button  class=" ml-5" variant="success" @click="ActDatos()">
+         <i class="fas fa-sync-alt fa-2x"></i> Actualizar los Datos
+        </b-button>
         <b-modal id="modal-center"
               variant="primary"
               centered title="Total de Pacientes En el Sistema"

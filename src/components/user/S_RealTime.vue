@@ -5,21 +5,21 @@
 		<div class="mt-5 ">
 			<span id="titulo" class="cnt d-flex justify-content-center">
 
-				<p class="text-warning">T</p>
-				<p class="text-success">i</p>
+				<p class="text-dark">T</p>
+				<p class="text-white">i</p>
 				<p class="text-white">e</p>
-				<p class="text-dark">m</p>
-				<p class="text-info">p</p>
+				<p class="text-white">m</p>
+				<p class="text-white">p</p>
 				<p class="text-white">o</p>
 				<i class="fa fa-heartbeat text-danger" aria-hidden="true"></i>
-				<p class="text-success">R</p>
-				<p class="text-warning">e</p>
-				<p class="text-info">a</p>
-				<p class="text-dark">l</p>
+				<p class="text-dark">R</p>
+				<p class="text-white">e</p>
+				<p class="text-white">a</p>
+				<p class="text-white">l</p>
 			</span>
 <div class="d-flex">
 	<b-btn  class="ml-2 mb-3 " v-b-modal.modal-center variant="success" @click="cargarseñal()">
-		Pacientes en el Sistema
+		<i class="fas fa-users fa-2x"></i> Pacientes en el Sistema
 	</b-btn>
 	<b-modal id="modal-center"
 		variant="primary"
@@ -52,7 +52,9 @@
 	</b-modal>
 
 
-	<b-button  class="ml-2 mb-3" variant="warning" @click="ActDatos()">Actualizar los Datos</b-button>
+	<b-button  class="ml-2 mb-3" variant="warning" @click="ActDatos()">
+		<i class="fas fa-sync-alt fa-2x text-white"></i> Actualizar los Datos
+	</b-button>
 </div>
 
 	</div>

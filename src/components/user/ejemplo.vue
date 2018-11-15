@@ -296,7 +296,35 @@
                    </div>
                </div>
                <!-- /form user info -->
+               <div class=" cnt d-flex">
+                 <div id="myDivI" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+                 <div id="myDivV1" class="container mt-1 ml-1 mr-2 mb-1"></div>
+               </div>
 
+               <div class="cnt d-flex">
+                 <div id="myDivII" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+                 <div id="myDivV2" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+               </div>
+
+               <div class="cnt d-flex">
+                 <div id="myDivIII" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+                 <div id="myDivV3" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+               </div>
+
+               <div class="cnt d-flex">
+                 <div id="myDivAVR" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+                 <div id="myDivV4" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+               </div>
+
+               <div class="cnt d-flex">
+                 <div id="myDivAVL" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+                 <div id="myDivV5" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+               </div>
+
+               <div class="cnt d-flex">
+                 <div id="myDivAVF" class="container mt-1 ml-3 mr-1 mb-1 "></div>
+                 <div id="myDivV6" class="container mt-1 ml-1 mr-2 mb-1 "></div>
+               </div>
      </div>
   </div>
 </template>
@@ -372,6 +400,196 @@ export default {
     				  if(cnt === 100) clearInterval(interval);
     				}, 250);
     		  },
+          graph() {
+            var trace1 = {
+              x:arguments[0],
+              y:this.I,
+              type:'scatter',
+              name: 'DI',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                }
+            }
+            var trace2 = {
+              x:arguments[0],
+              y:this.II,
+              type:'scatter',
+              name: 'DII',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+              }
+            }
+            var trace3 = {
+              x:arguments[0],
+               y:this.III,
+              type:'scatter',
+              name: 'DIII',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceAVR = {
+              x:arguments[0],
+              y:this.AVR,
+              type:'scatter',
+              name: 'AVR',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceAVL = {
+              x:arguments[0],
+              y:this.AVL,
+              type:'scatter',
+              name: 'AVL',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceAVF = {
+              x:arguments[0],
+              y:this.AVF,
+              type:'scatter',
+              name: 'AVF Low',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceV1 = {
+              x:arguments[0],
+              y:this.V1,
+              type:'scatter',
+              name: 'V1',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceV2 = {
+              x:arguments[0],
+              y:this.V2,
+              type:'scatter',
+              name: 'V2',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceV3 = {
+              x:arguments[0],
+              y:this.V3,
+              type:'scatter',
+              name: 'V3',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceV4 = { x:arguments[0], y:this.V4,
+              type:'scatter',
+              name: 'V4',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceV5 = { x:arguments[0], y:this.V5,
+              type:'scatter',
+              name: 'V5',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+            var traceV6 = { x:arguments[0], y:this.V6,
+              type:'scatter',
+              name: 'V6',
+              mode:'lines',
+               line: {
+                 color: '#76e20a',
+                 shape: 'spline',
+                  }
+            }
+
+            var dataI = [trace1], dataII = [trace2], dataIII = [trace3], dataAVR = [traceAVR], dataAVL = [traceAVL],dataAVF = [traceAVF],
+            dataV1 = [traceV1], dataV2 = [traceV2], dataV3 = [traceV3], dataV4 = [traceV4], dataV5 = [traceV5], dataV6 = [traceV6],
+
+
+
+            layout = {
+                title:'Paciente: '+arguments[13],
+                paper_bgcolor: 'rgba(24, 36, 37, 0.98)',
+      					plot_bgcolor: 'rgba(35, 47, 48, 0.96)',
+                  width: 660,
+                  height: 250,
+                  margin: {
+                  l:25,
+                  r:25,
+                  b:25,
+                  t:30,
+                },
+                showlegend: true,
+                hoverlabel:{
+                  bgcolor:'rgb(159, 19, 65)',
+                  bordercolor:'rgb(249, 239, 242)'
+                },
+
+                font: {
+                  size: 10,
+                  color: 'rgb(242, 242, 242)'
+                },
+                xaxis: {
+                  type: 'date',
+                  title: 'Hora',
+                  color:'rgb(11, 141, 235)',
+                  titlefont: {
+                    color: 'rgb(170, 161, 162)',
+                    size: 10
+                  }
+                },
+
+                yaxis: {
+                  title: 'Amplitud ',
+                  color:'rgb(11, 141, 235)',
+                  titlefont: {
+                    color: 'rgb(170, 161, 162)',
+                    size: 10
+                  }
+                }
+
+             }
+
+
+              Plotly.newPlot('myDivI', dataI, layout );
+              Plotly.newPlot('myDivII', dataII, layout);
+              Plotly.newPlot('myDivIII', dataIII, layout);
+              Plotly.newPlot('myDivAVR', dataAVR, layout);
+              Plotly.newPlot('myDivAVL', dataAVL, layout);
+              Plotly.newPlot('myDivAVF', dataAVF, layout);
+              Plotly.newPlot('myDivV1', dataV1, layout);
+              Plotly.newPlot('myDivV2', dataV2, layout);
+              Plotly.newPlot('myDivV3', dataV3, layout);
+              Plotly.newPlot('myDivV4', dataV4, layout);
+              Plotly.newPlot('myDivV5', dataV5, layout);
+              Plotly.newPlot('myDivV6', dataV6, layout);
+
+          }
     }
   })
 }

@@ -1,21 +1,21 @@
 <template>
   <div id="cuerpo" class="">
-    <b-form @sumbit.prevent="iniciarsesion" >
+    <b-form @sumbit.prevent="iniciarsesion" > 
         <div class="my-content ">
                   <span id="titulo" class="d-flex justify-content-center">
-                    <p class="text-danger">I</p>
-                    <p class="text-warning">n</p>
-                    <p class="text-dark">i</p>
-                    <p class="text-info">c</p>
-                    <p class="text-warning">i</p>
+                    <p class="text-dark">I</p>
+                    <p class="text-white">n</p>
+                    <p class="text-white">i</p>
+                    <p class="text-white">c</p>
+                    <p class="text-white">i</p>
                     <p class="text-white">a</p>
-                    <p class="text-success">r</p>
-                    <p class="text-danger">S</p>
-                    <p class="text-dark">e</p>
-                    <p class="text-info">s</p>
-                    <p class="text-success">i</p>
+                    <p class="text-white">r</p>
+                    <p class="text-dark">S</p>
+                    <p class="text-white">e</p>
+                    <p class="text-white">s</p>
+                    <p class="text-white">i</p>
                     <p class="text-white">ó</p>
-                    <p class="text-dark">n</p>
+                    <p class="text-white">n</p>
 
                    </span>
                    <div class="ml-5">
@@ -45,7 +45,7 @@
                 </b-button><br>
             </div>
 
-            <p class="text-warning">No tienes una cuenta ? <router-link to="/crearcuenta"> Crea una</router-link></p><br>
+            <p class="text-warning">No tienes una cuenta ? <router-link class="" to="/crearcuenta"> Crea una</router-link></p><br>
       </div>
     </b-form>
   </div>
@@ -62,20 +62,39 @@ export default {
       password: ''
     }
   },
-
+ watch: {
+    email(value) {
+      var user = firebase.auth().currentUser;
+      user.reload();
+        (value) ? console.log('escribiendo'): console.log('no escribe');
+    }
+  },
 	methods: {
     //-----------------------------------------------------------
     // METODO PARA INICIAR SESION
-	  iniciarsesion() {
+	  iniciarsesion() { 
+      
       if (this.email === '' || this.password === '') {
         swal ( "Algo salio mal !" , "Ingrese todos los datos requeridos" ,  "info" )
       }else {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((value) => {
-          swal('Usted se encuetra con una cuenta activa')
-          this.$router.replace('/hello')
+            var user = firebase.auth().currentUser;
+            console.log(user) 
+            if (user.emailVerified) {
+              this.$router.replace('/hello')
+            }
+            else {
+              firebase.auth().signOut()
+              swal('Por favor Debe validar su Cuenta','','info')
+            }
+         
         }, (err) => {
-          swal ( "Algo salio mal !" ,  "! " + err.message +" ¡" ,  "error" )
-        })
+            swal ( "Algo salio mal !" ,  "Ingrese sus valores correctamente" ,  "error" )
+          })
+        
+        this.email =''
+        this.password =''
+
       }
 
     },
@@ -146,8 +165,9 @@ font-family: 'Chelsea Market', cursive;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("https://images.pexels.com/photos/682487/pexels-photo-682487.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb");
+  background-image: url("https://images.pexels.com/photos/605494/pexels-photo-605494.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-size: cover;
+  height:112vh;
 }
 .my-content{
 margin-top: 30px;
