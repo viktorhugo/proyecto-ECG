@@ -81,9 +81,6 @@ export default {
     //do something after creating vue instance
     let user = firebase.auth().currentUser;
     var emailVerified = user.emailVerified;
-    console.log('el usuario esta '+ emailVerified);
-
-
   },
   //-------------------------------------------------------------------------
   mounted() {

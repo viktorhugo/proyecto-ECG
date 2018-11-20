@@ -1,7 +1,6 @@
 
 // ARCHIVO MANEJADOR DE RUTAS ENTRE LAS VISTAS
 import login from './components/login.vue'
-import info from './components/info.vue'
 import firebase from 'firebase'
 import crearcuenta from './components/crearcuenta.vue'
 import hello from './components/user/hello.vue'
@@ -22,10 +21,6 @@ export const routes = [
 		path: '/login',
 		component: login,
 		name: 'login'
-	},
-	{
-		path: '/info',
-		component: info
 	},
 	{
 		path: '/crearcuenta',

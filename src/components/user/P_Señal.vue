@@ -105,56 +105,56 @@
         <div v-if="anime" id="all" style="margin-left: 6em;" class="" >
 
             <div class=" container d-flex text-center d-block m-5  ">
-                <div class="">
-                    <canvas id="myChart1" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4 " ></canvas>
+                <div  class="n ml-4">
+                    <canvas id="myChart1" class=" borde  n rounded border border-danger  pb-3 pr-2 pt-4 " ></canvas>
                 </div>
-                <div>
-                    <canvas id="myChart2" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
-                </div>
-            </div>
-
-            <div class=" container d-flex text-center d-block m-5 ">
-                <div>
-                    <canvas id="myChart3" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
-                </div>
-                <div>
-                    <canvas id="myChart4" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
+                <div class="n ml-4">
+                    <canvas id="myChart2" class=" borde  n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
                 </div>
             </div>
 
             <div class=" container d-flex text-center d-block m-5 ">
-                <div>
-                    <canvas id="myChart5" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
+                <div class="n ml-4">
+                    <canvas id="myChart3" class=" borde  n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
                 </div>
-                <div>
-                    <canvas id="myChart6" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
-                </div>
-            </div>
-
-            <div class=" container d-flex text-center d-block m-5 ">
-                <div>
-                    <canvas id="myChart7"  class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
-                </div>
-                <div>
-                    <canvas id="myChart8" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                <div class="n ml-4">
+                    <canvas id="myChart4" class=" borde n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
                 </div>
             </div>
 
             <div class=" container d-flex text-center d-block m-5 ">
-                <div>
-                    <canvas id="myChart9"  class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                <div class="n ml-4">
+                    <canvas id="myChart5" class=" borde n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
                 </div>
-                <div>
-                    <canvas id="myChart10" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                <div class="n ml-4">
+                    <canvas id="myChart6" class=" borde n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
                 </div>
             </div>
 
             <div class=" container d-flex text-center d-block m-5 ">
-                <div>
-                    <canvas id="myChart11" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                <div class="n ml-4">
+                    <canvas id="myChart7"  class=" borde n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
                 </div>
-                <div>
-                    <canvas id="myChart12" class=" borde mr-2 n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
+                <div class="n ml-4">
+                    <canvas id="myChart8" class=" borde  n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                </div>
+            </div>
+
+            <div class=" container d-flex text-center d-block m-5 ">
+                <div class="n ml-4">
+                    <canvas id="myChart9"  class=" borde  n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                </div>
+                <div class="n ml-4">
+                    <canvas id="myChart10" class=" borde  n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                </div>
+            </div>
+
+            <div class=" container d-flex text-center d-block m-5 ">
+                <div class="n ml-4">
+                    <canvas id="myChart11" class=" borde n rounded border border-danger  pb-3 pr-2 pt-4" ></canvas>
+                </div>
+                <div class="n ml-4">
+                    <canvas id="myChart12" class=" borde n rounded border border-danger  pb-3 pr-2 pt-4"  ></canvas>
                 </div>
             </div>
 
@@ -286,6 +286,15 @@ export default {
     GraficarSeñal() {
         this.state = true;
         
+        if(this.sum()>1){
+            console.log('entro');
+           
+            ///canvas.clearRect(100, 100, canvas.width, canvas.height) 
+
+        } 
+        
+        
+
         this.I = null;
         this.II = null;
         this.III = null;
@@ -965,7 +974,7 @@ export default {
             }
         }); 
 
-      /*  setInterval(() => {
+        setInterval(() => {
             lineChart1.destroy()
             lineChart2.destroy()
             lineChart3.destroy()
@@ -979,7 +988,7 @@ export default {
             lineChart11.destroy()
             lineChart12.destroy()
         },100000)
-         */      
+               
     }
   }
   //-------------------------------------------------------------------------

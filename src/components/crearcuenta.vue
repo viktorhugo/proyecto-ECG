@@ -132,7 +132,7 @@ export default {
 #crearcuenta {
   font-family: 'Chelsea Market', cursive;
   margin-top: px;
-  height: 120hv;
+  height: 140hv;
   display: flex;
   justify-content: center;
   background-image: url("https://images.pexels.com/photos/256678/pexels-photo-256678.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");

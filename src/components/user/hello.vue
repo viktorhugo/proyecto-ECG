@@ -84,7 +84,7 @@ export default {
     swal("Valide su cuenta por favor para poder ingresar", "", "info");
     firebase.auth().signOut()
   }
-
+  this.$router.push('/hello/D_señal')
   },
 //-------------------------------------------------------------------------
   methods: {
@@ -131,7 +131,7 @@ export default {
   background-size: auto;
   justify-content: center;
   align-items: center;
-  height:340vh;
+  height:300vh;
 }
 .router-link-active{
   color: tomato;

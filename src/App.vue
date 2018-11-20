@@ -10,9 +10,6 @@
             <div class="">
               <b-jumbotron class="jumbo text-white" header="Sistema De Visualización Señales Electrocardiográficas ECG" lead="Universidad de los Llanos " >
               <b-btn variant="success" @click="cambiartipo()">Ingresar</b-btn>
-              <b-btn variant="success" >
-                <a class="alert-link" href="https://github.com/viktorhugo/proyecto-ecg">Informacion</a>
-                </b-btn>
               </b-jumbotron>
             </div>
         </div>
@@ -27,7 +24,7 @@
 </template>
 //--------------------------------------------------------------------------------------------------------------
 <script>
-
+import swal from 'sweetalert'
 export default {
 
  data(){
@@ -44,12 +41,11 @@ export default {
 
    cambiartipo() { // CAMBIAR ESTADO GLOBAL DE VARIABLE
      this.$store.state.tipo = !this.$store.state.tipo
-    this.$router.replace('/login')
+     this.$router.replace('/login')
    },
 
    info() {
-    //this.$store.state.tipo = !this.$store.state.tipo
-    //this.('https://github.com/viktorhugo/proyecto-ecg')
+     swal("APLICACIÓN ASÍNCRONA BASADA EN EVENTOS PARA EL PROCESAMIENTO, VISUALIZACIÓN Y ANÁLISIS DE LAS SEÑALES BIOMÉTRICAS ECG", " Esta ");
    }
  }
  //---------------------------------------------
