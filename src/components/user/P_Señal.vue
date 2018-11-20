@@ -286,15 +286,6 @@ export default {
     GraficarSeñal() {
         this.state = true;
         
-        if(this.sum()>1){
-            console.log('entro');
-           
-            ///canvas.clearRect(100, 100, canvas.width, canvas.height) 
-
-        } 
-        
-        
-
         this.I = null;
         this.II = null;
         this.III = null;
@@ -974,7 +965,7 @@ export default {
             }
         }); 
 
-        setInterval(() => {
+      /*  setInterval(() => {
             lineChart1.destroy()
             lineChart2.destroy()
             lineChart3.destroy()
@@ -988,7 +979,7 @@ export default {
             lineChart11.destroy()
             lineChart12.destroy()
         },100000)
-               
+         */      
     }
   }
   //-------------------------------------------------------------------------
